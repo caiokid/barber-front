@@ -1,3 +1,4 @@
+import { API_URL } from '../../config';
 import { useState } from 'react';
 import styles from './style.module.css'
 import DefaultInput from '../../components/Defaultinput';
@@ -17,7 +18,7 @@ function SignupContent() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:8080/auth/signup", {
+      const res = await fetch(`${API_URL}/auth/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({email, name,password}),
@@ -35,7 +36,8 @@ function SignupContent() {
      }else{
       showMessage.error(data.data[0].msg)
      }
-    } catch {
+    } catch (error) {
+      console.error("Erro:", error);
     };
   };
 

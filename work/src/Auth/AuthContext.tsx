@@ -1,3 +1,4 @@
+import { API_URL } from '../config';
 import React, { createContext, useContext, useMemo, useState} from "react";
 
 type AuthContextType = {
@@ -26,7 +27,7 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
   const logout = () => {
     setUserId(null);
     localStorage.removeItem("userId");
-    fetch("http://localhost:8080/auth/logout", {
+    fetch(`${API_URL}/auth/logout`, {
       method: "POST",
       credentials: "include",
     }).catch(() => {});

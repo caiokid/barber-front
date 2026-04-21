@@ -1,3 +1,4 @@
+import { API_URL } from '../../config';
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Auth/AuthContext";
@@ -79,7 +80,7 @@ function HomeContent() {
     setSending(true);
     setCommentError('');
     try {
-      const res = await fetch('http://localhost:8080/marcado/comment', {
+      const res = await fetch(`${API_URL}/marcado/comment`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -89,8 +90,9 @@ function HomeContent() {
       setCommentText('');
       setSent(true);
       setTimeout(() => {setSent(false); window.location.reload()} , 2000);
-    } catch {
+    } catch (error) {
       setCommentError('Não foi possível enviar. Tente novamente.');
+      console.error("Erro:", error);
     } finally {
       setSending(false);
     }
@@ -99,7 +101,7 @@ function HomeContent() {
 
   useEffect(() => {
     const getComments = async () => {
-      const response = await fetch(`http://localhost:8080/comments/show`, {
+      const response = await fetch(`${API_URL}/comments/show`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -115,7 +117,7 @@ function HomeContent() {
 
   useEffect(() => {
     const getServices = async () => {
-      const response = await fetch(`http://localhost:8080/marcar/services/home`, {
+      const response = await fetch(`${API_URL}/marcar/services/home`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -129,7 +131,7 @@ function HomeContent() {
 
   useEffect(() => {
     const getBarbers = async () => {
-      const response = await fetch(`http://localhost:8080/employs/barbers/home`, {
+      const response = await fetch(`${API_URL}/employs/barbers/home`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

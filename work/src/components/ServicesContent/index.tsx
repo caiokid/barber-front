@@ -1,3 +1,4 @@
+import { API_URL } from '../../config';
 import { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import { useParams } from "react-router-dom";
@@ -25,7 +26,7 @@ function ServicesContent() {
   useEffect(() => {
     const getServices = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/marcar/service/${funcId}`, {
+        const response = await fetch(`${API_URL}/marcar/service/${funcId}`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
@@ -35,7 +36,8 @@ function ServicesContent() {
 
         const resposta: Owner = await response.json();
         if (resposta.armazena) setFunc(resposta.armazena);
-      } catch {
+      } catch (error) {
+        console.error('Erro ao buscar serviços:', error);
       } finally {
         setLoading(false);
       }

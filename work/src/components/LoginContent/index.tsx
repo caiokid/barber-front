@@ -1,3 +1,4 @@
+import { API_URL } from '../../config';
 import { useAuth } from "../../Auth/AuthContext";
 import DefaultInput from "../Defaultinput";
 import styles from "./style.module.css"
@@ -20,7 +21,7 @@ function LoginContent() {
     e.preventDefault()
     
     try {
-      const res = await fetch("http://localhost:8080/auth/login", {
+      const res = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: email, password: senha }),
@@ -40,7 +41,8 @@ function LoginContent() {
       } else {
         showMessage.error(data.message);
       }
-     } catch {
+     } catch (error) {
+      console.error("Erro:", error);
     }
   };
 

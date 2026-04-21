@@ -1,3 +1,4 @@
+import { API_URL } from '../../config';
 import { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import { showMessage } from "../../messages/showMessage";
@@ -24,7 +25,7 @@ function MarcadosContent() {
   useEffect(() => {
     const fetchMarcados = async () => {
       try {
-        const response = await fetch('http://localhost:8080/marcado/confirmed', {
+        const response = await fetch(`${API_URL}/marcado/confirmed`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
           credentials: 'include',
@@ -40,7 +41,8 @@ function MarcadosContent() {
 
         const data: ApiResponse = await response.json();
         if (data.appointments && data.appointments.length > 0) setMarcados(data.appointments);
-      } catch {
+      } catch (error) {
+      console.error("Erro:", error);
       }
     };
 
@@ -50,7 +52,7 @@ function MarcadosContent() {
   function Desmarque(e: React.MouseEvent<HTMLButtonElement>, id: string) {
     e.preventDefault();
 
-    fetch('http://localhost:8080/marcado/deletar', {
+    fetch(`${API_URL}/marcado/deletar`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ idarray: id }),

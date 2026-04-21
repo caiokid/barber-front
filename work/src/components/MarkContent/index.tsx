@@ -1,3 +1,4 @@
+import { API_URL } from '../../config';
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useState, useEffect } from 'react';
 import { useAuth } from "../../Auth/AuthContext";
@@ -51,7 +52,7 @@ function MarkContent() {
   // Aqui irá trazer do database os horários que já estão no database
   const fetchOccupiedSlots = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/times/check`, {
+      const response = await fetch(`${API_URL}/times/check`, {
         credentials: "include"
       });
       const data = await response.json();
@@ -69,7 +70,7 @@ function MarkContent() {
 
   const fetchServices = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/marcar/services/${services}`, {
+      const response = await fetch(`${API_URL}/marcar/services/${services}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -213,7 +214,7 @@ function MarkContent() {
    const confirmMarket = async (e:React.MouseEvent<HTMLButtonElement, MouseEvent>,formatada:string,horario:string | number) => {
     e.preventDefault();
    try {
-      const res = await fetch("http://localhost:8080/marcado/horario", {
+      const res = await fetch(`${API_URL}/marcado/horario`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -228,7 +229,8 @@ function MarkContent() {
         navigate("/marcado/confirmed", { replace: true });
         },2000)
  
-    }} catch {
+    }} catch (error) {
+      console.error('Erro ao confirmar agendamento:', error);
     }
   };
 

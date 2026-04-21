@@ -1,3 +1,4 @@
+import { API_URL } from '../../config';
 import { useEffect, useState } from "react";
 import styles from './styles.module.css';
 
@@ -17,7 +18,7 @@ function EmploysContent() {
   useEffect(() => {
     const acharEmploys = async () => {
       try {
-        const response = await fetch('http://localhost:8080/employs/barbers', {
+        const response = await fetch(`${API_URL}/employs/barbers`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
@@ -39,7 +40,8 @@ function EmploysContent() {
         if (resposta.barbers){
           setFuncionario(resposta.barbers);
         } 
-      } catch {
+      } catch (error) {
+        console.error("Erro ao buscar barbeiros:", error);
       } finally {
         setLoading(false);
       }
