@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd work && npm install && npm run build",
+  "outputDirectory": "work/dist",
+  "installCommand": "echo 'skip root install'"
+}
