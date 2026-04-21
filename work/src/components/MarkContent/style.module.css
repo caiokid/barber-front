@@ -1,0 +1,338 @@
+/* ── PAGE WRAPPER ── */
+.barber-calendar-container {
+  min-height: 100vh;
+  background: #0a0a0a;
+  padding-top: 72px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── PAGE HEADER ── */
+.pageHeader {
+  padding: 4rem 2rem 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-bottom: 1px solid #1e1e1e;
+  margin-bottom: 3rem;
+}
+
+.pageLabel {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.pageLabel::before {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: #c9a84c;
+}
+
+.pageTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #f5f0e8;
+}
+
+.pageTitleAccent {
+  font-style: italic;
+  color: #c9a84c;
+}
+
+.pageSubtitle {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: #5a5a5a;
+  margin-top: 0.75rem;
+}
+
+/* ── CALENDAR LAYOUT ── */
+.calendar-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem 6rem;
+  align-items: start;
+}
+
+/* ── MONTH CALENDAR ── */
+.month-calendar {
+  background: #111111;
+  border: 1px solid #1e1e1e;
+  padding: 2rem;
+}
+
+.month-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #1e1e1e;
+}
+
+.month-navigation h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #f5f0e8;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+.nav-button {
+  background: transparent;
+  color: #c9a84c;
+  border: 1px solid #2a2a2a;
+  width: 36px;
+  height: 36px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  line-height: 1;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-button:hover {
+  background: #1a1a1a;
+  border-color: #c9a84c;
+}
+
+/* Week header */
+.week-days-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.week-day-cell {
+  text-align: center;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #3a3a3a;
+  padding: 8px 4px;
+}
+
+/* Days grid */
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.day-cell {
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.day-number {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #9a9a9a;
+}
+
+/* Day states — applied as plain class strings in JSX */
+:global(.available) .day-number,
+:global(.available) {
+  background: #161616;
+  color: #f5f0e8;
+}
+
+:global(.available):hover {
+  background: #1e1e1e;
+  border-color: #2a2a2a;
+}
+
+:global(.selected),
+:global(.selected) .day-number {
+  background: #c9a84c !important;
+  border-color: #c9a84c !important;
+  color: #0a0a0a !important;
+}
+
+:global(.unavailable) {
+  background: transparent;
+  cursor: not-allowed;
+  opacity: 0.25;
+}
+
+:global(.available-dot) {
+  width: 4px;
+  height: 4px;
+  background: #c9a84c;
+  border-radius: 50%;
+  margin-top: 2px;
+  opacity: 0.6;
+}
+
+/* ── TIME SELECTION ── */
+.time-selection {
+  background: #111111;
+  border: 1px solid #1e1e1e;
+  padding: 2rem;
+  min-height: 400px;
+}
+
+.time-slots-container h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f5f0e8;
+  margin: 0 0 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #1e1e1e;
+  text-align: center;
+}
+
+.time-slots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.time-slot {
+  padding: 0.75rem 0.5rem;
+  border: 1px solid #2a2a2a;
+  background: #0a0a0a;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #9a9a9a;
+  transition: all 0.2s ease;
+}
+
+.time-slot:hover:not(:disabled) {
+  border-color: #c9a84c;
+  color: #f5f0e8;
+  background: #161616;
+}
+
+:global(.time-slot.selected),
+.time-slot:global(.selected) {
+  background: #c9a84c;
+  border-color: #c9a84c;
+  color: #0a0a0a;
+  font-weight: 700;
+}
+
+.occupied {
+  opacity: 0.3;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+/* Booking summary */
+.booking-summary {
+  background: #0a0a0a;
+  border: 1px solid #1e1e1e;
+  border-left: 2px solid #c9a84c;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.booking-details h4 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f5f0e8;
+  margin: 0 0 1rem;
+}
+
+.booking-details p {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: #9a9a9a;
+  margin: 0.4rem 0;
+  line-height: 1.6;
+}
+
+.booking-details strong {
+  color: #f5f0e8;
+  font-weight: 500;
+}
+
+.confirm-booking-btn {
+  width: 100%;
+  padding: 1rem;
+  background: #c9a84c;
+  color: #0a0a0a;
+  border: none;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 1.25rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.confirm-booking-btn:hover {
+  background: #f5f0e8;
+  transform: translateY(-1px);
+}
+
+/* No selection placeholder */
+.no-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.placeholder-icon {
+  font-size: 2.5rem;
+  opacity: 0.15;
+}
+
+.no-selection p {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: #5a5a5a;
+}
+
+.no-selection small {
+  font-size: 0.75rem;
+  color: #3a3a3a;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .calendar-content {
+    grid-template-columns: 1fr;
+  }
+
+  .time-slots-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

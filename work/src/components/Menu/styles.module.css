@@ -1,0 +1,155 @@
+.menuWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 2rem;
+  height: 72px;
+}
+
+/* Logo */
+.logo {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.logo:hover {
+  color: #f5f0e8;
+}
+
+.logoAccent {
+  color: #f5f0e8;
+}
+
+/* Nav links */
+.link {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.link a {
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.link a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #c9a84c;
+  transition: width 0.3s ease;
+}
+
+.link a:hover {
+  color: #f5f0e8;
+}
+
+.link a:hover::after {
+  width: 100%;
+}
+
+/* Book CTA button */
+.bookBtn {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  color: #0a0a0a !important;
+  background: #c9a84c;
+  padding: 0.55rem 1.4rem !important;
+  border-radius: 2px;
+  transition: background 0.3s ease, color 0.3s ease !important;
+}
+
+.bookBtn:hover {
+  background: #f5f0e8 !important;
+  color: #0a0a0a !important;
+}
+
+.bookBtn::after {
+  display: none !important;
+}
+
+/* ── Mobile ── */
+.mobileMenu {
+  display: none;
+  position: relative;
+}
+
+.dotsBtn {
+  background: none;
+  border: none;
+  color: #c9a84c;
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  line-height: 1;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: #111;
+  border: 1px solid #2a2a2a;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 180px;
+  z-index: 100;
+}
+
+.dropdown a {
+  display: block;
+  padding: 0.85rem 1.25rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+  text-decoration: none;
+  border-bottom: 1px solid #1e1e1e;
+  transition: color 0.2s, background 0.2s;
+}
+
+.dropdown a:last-child {
+  border-bottom: none;
+}
+
+.dropdown a:hover {
+  color: #f5f0e8;
+  background: #1a1a1a;
+}
+
+@media (max-width: 600px) {
+  .link {
+    display: none;
+  }
+
+  .mobileMenu {
+    display: block;
+  }
+}

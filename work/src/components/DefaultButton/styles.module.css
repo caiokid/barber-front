@@ -1,0 +1,25 @@
+.btn {
+  width: 100%;
+  background: #c9a84c;
+  color: #0a0a0a;
+  border: none;
+  border-radius: 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.9rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.25s ease;
+}
+
+.btn:hover {
+  background: #f5f0e8;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
