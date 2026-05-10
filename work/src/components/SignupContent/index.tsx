@@ -16,7 +16,6 @@ function SignupContent() {
   
   const handleTeste = async (e:React.FormEvent<HTMLFormElement>) =>{
     e.preventDefault();
-
     try {
       const res = await fetch(`${API_URL}/auth/signup`, {
         method: "POST",

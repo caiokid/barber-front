@@ -89,28 +89,31 @@ function HomeContent() {
       if (!res.ok) throw new Error();
       setCommentText('');
       setSent(true);
-      setTimeout(() => {setSent(false); window.location.reload()} , 2000);
+      setTimeout(() => { setSent(false); window.location.reload(); }, 2000);
     } catch (error) {
+      console.error('Erro ao enviar comentário:', error);
       setCommentError('Não foi possível enviar. Tente novamente.');
-      console.error("Erro:", error);
     } finally {
       setSending(false);
     }
   }
 
-
   useEffect(() => {
     const getComments = async () => {
-      const response = await fetch(`${API_URL}/comments/show`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-      });
-      if (!response.ok) throw new Error('Erro ao buscar os comentários');
-      const comentario:CommentGet = await response.json();
-      if (comentario.comments) setTestimonials(comentario.comments);
+      try {
+        const response = await fetch(`${API_URL}/comments/show`, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        });
+        if (!response.ok) throw new Error('Erro ao buscar os comentários');
+        const comentario: CommentGet = await response.json();
+        if (comentario.comments) setTestimonials(comentario.comments);
+      } catch (error) {
+        console.error('Erro ao buscar comentários:', error);
+      }
     };
-    getComments(); 
+    getComments();
   }, []);
 
 

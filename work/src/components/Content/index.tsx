@@ -1,10 +1,23 @@
-type ContentProps = {
-  children: React.ReactNode;
-  className?: string;
-};
+import type React from "react";
 
-function Content({ children, className }: ContentProps) {
-  return <div className={className}>{children}</div>;
+
+type Props = {
+
+ className: string;
+ children: React.ReactNode;
+
 }
+ 
 
-export default Content;
+function Content({className, children}: Props) {
+  
+       
+    return (
+    <div className={className}>
+        {children}
+    </div>
+    )
+}
+  
+export default Content
+  
