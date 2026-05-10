@@ -41,7 +41,7 @@ function ShowTimeContent() {
         const response = await fetch(`http://localhost:8080/marcar/services/${mes}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({horario: horario,mexExato:horario[mes]}),
+          body: JSON.stringify({horario: horario, mexExato: mes}),
           credentials: "include"
         });
         const data = await response.json();
