@@ -67,7 +67,7 @@ function ServicesContent() {
       ) : (
         <div className={styles.grid}>
           {func.map((serv) => (
-            <RouterLink key={serv.id} href={`/marcar/${serv.id}`} className={styles.card}>
+            <RouterLink key={serv.id} href={`/marcar/${encodeURIComponent(serv.id)}`} className={styles.card}>
               <div className={styles.serviceName}>{serv.nome}</div>
               <div className={styles.servicePrice}>{serv.preco}</div>
               <div className={styles.arrow}>Selecionar →</div>

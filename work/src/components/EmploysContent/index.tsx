@@ -24,10 +24,10 @@ function EmploysContent() {
           credentials: "include",
         });
 
-        if(response.status == 401) {
-          window.location.href = "/login";
+        if (response.status === 401) {
           localStorage.removeItem('userId');
-          window.location.reload();
+          window.location.href = "/login";
+          return;
         }
 
 
@@ -73,7 +73,7 @@ function EmploysContent() {
       ) : (
         <div className={styles.grid}>
           {funcionario.map((b) => (
-            <a key={b.id} href={`/marcar/service/${b.id}`} className={styles.card}>
+            <a key={b.id} href={`/marcar/service/${encodeURIComponent(b.id)}`} className={styles.card}>
               <div className={styles.avatar}>✂</div>
               <div className={styles.name}>{b.name}</div>
               <div className={styles.role}>Barbeiro</div>

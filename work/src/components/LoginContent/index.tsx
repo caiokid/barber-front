@@ -16,7 +16,10 @@ function LoginContent() {
   const [senha,setSenha] = useState<string>('');
   const [emailCor, setCorEmail] = useState<string>('');
   const [senhaCor, setCorSenha] = useState<string>('');
+  const [error, setError] = useState<number>(0);
   
+  
+
   const handleLogin = async (e:React.FormEvent<HTMLFormElement>,) => {
     e.preventDefault()
     
@@ -30,21 +33,32 @@ function LoginContent() {
 
       const data = await res.json();
 
-      if (data.message === 'Login successful!') {
+
+      if (data.message === 'Logado com sucesso!') {
         login(data.userId);         
         navigate('/');
         return true;
       }
     
-      if(data.message === 'Validation failed'){
+      if (!res.ok) {
         showMessage.error(data.data[0].msg);
-      } else {
-        showMessage.error(data.message);
+      }
+
+      if (res.status === 401) {
+        setError(prevError => prevError + 1);
+      }
+
+      if(res.status === 401){
+        setError(prevError => prevError + 1);
       }
      } catch (error) {
       console.error("Erro:", error);
     }
   };
+
+
+ 
+
 
 
   
@@ -102,10 +116,19 @@ function LoginContent() {
           </button>
         </form>
 
+ 
+       {error > 2 ?<p className={styles.footer}>
+        Esqueceu a senha?
+          <a href='/recuperar-senha' className={styles.footerLink}>Recuperar Senha</a>
+        </p> :   
         <p className={styles.footer}>
           Não tem conta?
           <a href='/cadastrar' className={styles.footerLink}>Cadastrar</a>
         </p>
+        
+        }
+              
+    
       </div>
     </div>
   );

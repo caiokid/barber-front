@@ -9,6 +9,8 @@ import Services from "./pages/Serviços";
 import Employs from "./pages/Employs";
 import { Bounce, ToastContainer } from "react-toastify";
 import MarcadosPage from "./pages/Marcados";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 
 
@@ -24,7 +26,9 @@ function App() {
       <Routes>
         <Route path="/" element={< Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/cadastrar" element={< Signup/>} />
+        <Route path="/cadastrar" element={<Signup />} />
+        <Route path="/recuperar-senha" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
 
 
         <Route

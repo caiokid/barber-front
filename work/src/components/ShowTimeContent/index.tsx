@@ -1,4 +1,4 @@
- 
+import { API_URL } from '../../config';
 import {useNavigate, useParams } from "react-router-dom";
 import Container from "../Container";
 import styles from './styles.module.css'
@@ -16,17 +16,13 @@ function ShowTimeContent() {
 
   const navigate = useNavigate();
 
-  console.log(teste )
-
   const {mes} = useParams<{mes:string}>();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [hora, setHora] = useState<any[]>([]); 
+  const [hora, setHora] = useState<any[]>([]);
   const { services } = useParams<{ services: string | never }>();
-
 
   const {funcionarioTeste,serviçoTeste} = useAuth();
   serviçoTeste.push(services)
-  console.log(services)
  
 
 
@@ -38,7 +34,7 @@ function ShowTimeContent() {
     const resultados = [];
     for (const horario of todosHorarios) {
       try {
-        const response = await fetch(`http://localhost:8080/marcar/services/${mes}`, {
+        const response = await fetch(`${API_URL}/marcar/services/${mes}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({horario: horario, mexExato: mes}),
@@ -75,7 +71,7 @@ function ShowTimeContent() {
      try {
        const opa = teste ? teste.find((_item, index) => index.toString() === mes)?.mes?.toString() : null
 
-        const response = await fetch(`http://localhost:8080/marcado/horario`,{
+        const response = await fetch(`${API_URL}/marcado/horario`,{
           method: "POST",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
