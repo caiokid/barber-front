@@ -23,11 +23,16 @@ function ForgotPasswordContent() {
 
       const data = await res.json();
 
-     if (data.message === 'E-mail de recuperação enviado!') {
+      console.log(data);
+
+
+     if (data.message === 'Se este e-mail estiver cadastrado, você receberá as instruções em breve.') {
       showMessage.success(data.message);
       setTimeout(() => {
       navigate('/login');
       }, 2000);
+     }else{
+       showMessage.error(data.data[0].msg);
      }    
     } catch (error) {
       console.error('Erro ao recuperar senha:', error);
