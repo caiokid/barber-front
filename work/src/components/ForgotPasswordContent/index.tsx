@@ -31,9 +31,10 @@ function ForgotPasswordContent() {
       setTimeout(() => {
       navigate('/login');
       }, 2000);
-     }else{
-       showMessage.error(data.data[0].msg);
-     }    
+     } else {
+      const msg = data?.data?.[0]?.msg || data?.message || 'Erro ao enviar email'
+      showMessage.error(msg)
+    }  
     } catch (error) {
       console.error('Erro ao recuperar senha:', error);
     }

@@ -51,3 +51,22 @@ body {
   background: var(--color-gold-dim);
   border-radius: 3px;
 }
+
+@media (max-width: 600px) {
+  .Toastify__toast-container {
+    width: auto !important;
+    max-width: 88vw !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    top: 80px !important;
+    padding: 0 !important;
+  }
+
+  .Toastify__toast {
+    border-radius: 8px !important;
+    padding: 12px 16px !important;
+    min-height: auto !important;
+    font-size: 0.9rem !important;
+  }
+}
